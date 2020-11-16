@@ -1,0 +1,128 @@
+apiVersion: jenkins.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  labels:
+    env: dev
+    team: jx
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: dev
+  namespace: jx
+spec:
+  kind: Development
+  label: Development
+  namespace: jx
+  previewGitInfo:
+    user: {}
+  promotionStrategy: Never
+  source:
+    ref: master
+    url: https://github.com/simonbahuchet/jx3-minikube.git
+  teamSettings:
+    appsRepository: http://chartmuseum.jenkins-x.io
+    bootRequirements: |
+      autoUpdate:
+        enabled: false
+        schedule: ""
+      bootConfigURL: https://github.com/jenkins-x/jx3-boot-config
+      buildPacks:
+        buildPackLibrary:
+          gitRef: master
+          gitURL: https://github.com/jenkins-x/jx3-pipeline-catalog.git
+      cluster:
+        chartRepository: http://bucketrepo/bucketrepo/charts/
+        clusterName: kind
+        devEnvApprovers:
+        - todo
+        environmentGitOwner: todo
+        gitKind: github
+        gitName: github
+        gitServer: https://github.com
+        namespace: jx
+        provider: minikube
+      environments:
+      - ingress:
+          domain: ""
+          externalDNS: false
+          namespaceSubDomain: ""
+          tls:
+            email: ""
+            enabled: false
+            production: false
+        key: dev
+        owner: simonbahuchet
+        repository: jx3-minikube
+      - ingress:
+          domain: ""
+          externalDNS: false
+          namespaceSubDomain: ""
+          tls:
+            email: ""
+            enabled: false
+            production: false
+        key: staging
+      - ingress:
+          domain: ""
+          externalDNS: false
+          namespaceSubDomain: ""
+          tls:
+            email: ""
+            enabled: false
+            production: false
+        key: production
+      gitops: true
+      ingress:
+        domain: 192.168.64.3.nip.io
+        externalDNS: false
+        namespaceSubDomain: -jx.
+        tls:
+          email: ""
+          enabled: false
+          production: false
+      kaniko: true
+      pipelineUser:
+        username: simonbahuchet
+      repository: bucketrepo
+      secretStorage: vault
+      storage:
+        backup:
+          enabled: false
+          url: ""
+        logs:
+          enabled: false
+          url: ""
+        reports:
+          enabled: false
+          url: ""
+        repository:
+          enabled: false
+          url: ""
+      vault: {}
+      velero:
+        schedule: ""
+        ttl: ""
+      versionStream:
+        ref: master
+        url: https://github.com/jenkins-x/jxr-versions.git
+      webhook: lighthouse
+    buildPackRef: master
+    buildPackUrl: https://github.com/jenkins-x/jx3-pipeline-catalog.git
+    defaultScheduler:
+      apiVersion: jenkins.io/v1
+      kind: Scheduler
+      name: jx-meta-pipeline
+    envOrganisation: todo
+    gitServer: https://github.com
+    helmTemplate: true
+    importMode: YAML
+    kubeProvider: minikube
+    pipelineUserEmail: jenkins-x@googlegroups.com
+    pipelineUsername: simonbahuchet
+    promotionEngine: Prow
+    prowConfig: Scheduler
+    prowEngine: Tekton
+    useGitOps: true
+    versionStreamRef: master
+    versionStreamUrl: https://github.com/jenkins-x/jxr-versions.git
+  webHookEngine: Lighthouse
+status: {}

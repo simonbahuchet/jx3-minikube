@@ -28,6 +28,8 @@ jxRequirements:
         enabled: false
         production: false
     key: dev
+    owner: simonbahuchet
+    repository: jx3-minikube
   - ingress:
       domain: ""
       externalDNS: false
@@ -48,7 +50,7 @@ jxRequirements:
     key: production
   gitops: true
   ingress:
-    domain: ""
+    domain: 192.168.64.3.nip.io
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
@@ -56,6 +58,8 @@ jxRequirements:
       enabled: false
       production: false
   kaniko: true
+  pipelineUser:
+    username: simonbahuchet
   repository: bucketrepo
   secretStorage: vault
   storage:
